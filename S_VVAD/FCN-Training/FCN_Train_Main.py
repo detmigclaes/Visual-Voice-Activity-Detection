@@ -57,8 +57,13 @@ batch_size = 4#128
 Num_Epoches = 20
 # saver = tf.train.import_meta_graph(PATH + 'model_epoch1.ckpt.meta')
 #################################Train Test read########
-train_generator = ImageDataGenerator2(train_file, horizontal_flip=True, shuffle=True,
+
+#train_generator = ImageDataGenerator2(train_file, horizontal_flip=True, shuffle=True,
+#                                      basePath='./ColumbClustrDynamic/')  # ../PersonDynamic10/')#./PersonOptical/')
+train_generator = ImageDataGeneratorTrain(train_file, horizontal_flip=True, shuffle=True,
                                       basePath='./ColumbClustrDynamic/')  # ../PersonDynamic10/')#./PersonOptical/')
+
+
 val_generator = ImageDataGeneratorTest(val_file, shuffle=False,
                                     basePath='./ColumbClustrDynamic/')  # ../PersonDynamic10/')#./PersonOptical/')
 
