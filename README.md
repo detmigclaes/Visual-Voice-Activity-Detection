@@ -1,5 +1,5 @@
 # Visual-Voice-Activity-Detection V-VAD
-Project for Computer Vision F23
+Project for Computer Vision F23 
 
 This project will explore methods for Voice Activity Detection.
 This will include a review of methods for V-VAD and a review of the different datasets that are used to train and validate the models. For this, the following papers will be discussed:
@@ -24,3 +24,4 @@ This dataset can be found here: https://www.youtube.com/watch?v=6GzxbrO0DHM
 
 
 By Oliver Fridorf and Claes Eske Harbo Jensen
+Group 12
