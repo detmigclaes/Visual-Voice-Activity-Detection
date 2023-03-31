@@ -19,8 +19,11 @@ Configuration settings
 """
 mean = np.array([128., 128., 128.], np.float32)
 # Path to the textfiles for the trainings and validation set
-train_file = './ColumbClustrTrain/ColmbClstrTrain1.txt'#ColmbClstrTrain1.txt'#ColmbClstrSngle.txt'#ColmbClstrSngle.txt'#ColmbClstrTrain1.txt'
-val_file = './ColumbClustrTest/ColmbTest1.txt'  # Columb2
+#train_file = './ColumbClustrTrain/ColmbClstrTrain1.txt'#ColmbClstrTrain1.txt'#ColmbClstrSngle.txt'#ColmbClstrSngle.txt'#ColmbClstrTrain1.txt'
+#val_file = './ColumbClustrTest/ColmbTest1.txt'  # Columb2
+#AnnoBase = './BoundingBox/'
+train_file = './ValidationFold/trainRealVAD1.txt'#ColmbClstrTrain1.txt'#ColmbClstrSngle.txt'#ColmbClstrSngle.txt'#ColmbClstrTrain1.txt'
+val_file = './ValidationFold/testRealVAD1.txt'  # Columb2
 AnnoBase = './BoundingBox/'
 #######################################
 
@@ -61,11 +64,11 @@ Num_Epoches = 20
 #train_generator = ImageDataGenerator2(train_file, horizontal_flip=True, shuffle=True,
 #                                      basePath='./ColumbClustrDynamic/')  # ../PersonDynamic10/')#./PersonOptical/')
 train_generator = ImageDataGeneratorTrain(train_file, horizontal_flip=True, shuffle=True,
-                                      basePath='./ColumbClustrDynamic/')  # ../PersonDynamic10/')#./PersonOptical/')
+                                      basePath='./realvadDynamic/')  # ../PersonDynamic10/')#./PersonOptical/')
 
 
 val_generator = ImageDataGeneratorTest(val_file, shuffle=False,
-                                    basePath='./ColumbClustrDynamic/')  # ../PersonDynamic10/')#./PersonOptical/')
+                                    basePath='./realvadDynamic/')  # ../PersonDynamic10/')#./PersonOptical/')
 
 num_classes = 3
 Train_batches_per_epoch = np.ceil(train_generator.data_size / batch_size).astype(np.int16)
