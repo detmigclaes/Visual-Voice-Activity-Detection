@@ -15,8 +15,8 @@ if __name__ == '__main__':
     # Hyper Parameters
     parser = argparse.ArgumentParser()
     parser.add_argument('--num_epochs', type=int, default=20, help='number of epochs')
-    parser.add_argument('--batch_size', type=int, default=16, help='training batch size')
-    parser.add_argument('--test_batch_size', type=int, default=16, help='test batch size')
+    parser.add_argument('--batch_size', type=int, default=8, help='training batch size')# previus 16
+    parser.add_argument('--test_batch_size', type=int, default=8, help='test batch size')# previus 16
     parser.add_argument('--time_depth', type=int, default=15, help='number of time frames in each video\audio sample')
     parser.add_argument('--workers', type=int, default=0, help='num workers for data loading')
     parser.add_argument('--lr', type=float, default=0.001, help='learning rate')
@@ -52,8 +52,8 @@ if __name__ == '__main__':
     # create train + val datasets
     dataset = utils.import_dataset(args)
 
-    train_dataset = dataset(DataDir='data/train/', timeDepth = args.time_depth, is_train=True)
-    val_dataset = dataset(DataDir='data/test/', timeDepth = args.time_depth, is_train=False)
+    train_dataset = dataset(DataDir='home/data/train/', timeDepth = args.time_depth, is_train=True)
+    val_dataset = dataset(DataDir='home/data/test/', timeDepth = args.time_depth, is_train=False)
 
     print('{} samples found, {} train samples and {} test samples.'.format(len(val_dataset)+len(train_dataset),
                                                                            len(train_dataset),

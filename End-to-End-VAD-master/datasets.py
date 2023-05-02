@@ -7,10 +7,13 @@ import math
 import pickle
 from utils.NoiseInjection import *
 import skvideo
-skvideo.setFFmpegPath('C:/ffmpeg/bin/')
+#skvideo.setFFmpegPath('/cv12f23/ffmpeg/bin/')
 import skvideo.io
 import torchvision.transforms
 import re
+
+# added by us
+import soundfile as sf
 
 #Audio ground truth
 AudioGt = {}
@@ -193,7 +196,8 @@ class AudioDataset(Dataset):
                             audio_seq = self.noiseInjector.inject_trans_sample(audio_seq)
 
                     audio_path = self.DataDir + 'samples/sample_' + str(piece_num) + '.wav'
-                    librosa.output.write_wav(audio_path, audio_seq, sr=self.sampling_rate)
+                    sf.write(audio_path, audio_seq, self.sampling_rate)
+                    #librosa.output.write_wav(audio_path, audio_seq, sr=self.sampling_rate)
                     piece_num += 1
 
                     label = torch.LongTensor(1)
