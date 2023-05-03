@@ -10,6 +10,7 @@ from torch.autograd import Variable
 from utils.logger import Logger
 import os
 
+
 if __name__ == '__main__':
 
     # Hyper Parameters
@@ -45,19 +46,21 @@ if __name__ == '__main__':
     logger = Logger('logs')
 
     # create a saved models folder
-    save_dir = os.path.join('saved_models', args.arch)
+    save_dir = os.path.join('/home/cv12f23/saved_models/A run 1_test', args.arch)
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
     # create train + val datasets
     dataset = utils.import_dataset(args)
 
-    train_dataset = dataset(DataDir='home/data/train/', timeDepth = args.time_depth, is_train=True)
-    val_dataset = dataset(DataDir='home/data/test/', timeDepth = args.time_depth, is_train=False)
+    train_dataset = dataset(DataDir='/home/cv12f23/data/train/', timeDepth = args.time_depth, is_train=True)
+    val_dataset = dataset(DataDir='/home/cv12f23/data/test/', timeDepth = args.time_depth, is_train=False)
 
     print('{} samples found, {} train samples and {} test samples.'.format(len(val_dataset)+len(train_dataset),
                                                                            len(train_dataset),
                                                                            len(val_dataset)))
+    
+    
 
     # create the data loaders
 
@@ -236,7 +239,7 @@ if __name__ == '__main__':
             logger.scalar_summary('train loss', loss.item(), step + 1)
             logger.scalar_summary('train accuracy', accuracy.item(), step + 1)
             step+=1
-
+           
             if i > 0 and i % args.print_freq == 0:
                 print('Epoch: [{0}][{1}/{2}] , \t'
                       'LR {3} , \t'
@@ -255,6 +258,7 @@ if __name__ == '__main__':
         logger.scalar_summary('Test Loss ', loss, epoch)
         logger.scalar_summary('LR ', optimizer.param_groups[0]['lr'], epoch)
 
+     
         # remember best prec@1 and save checkpoint
         is_best = False
         if accuracy > best_accuracy:
@@ -279,3 +283,5 @@ if __name__ == '__main__':
             model_name = "%s\\acc_%.3f_epoch_%03d_arch_%s_model.pkl" % (save_dir, accuracy, epoch, args.arch)
 
             torch.save(net, model_name)
+            
+            

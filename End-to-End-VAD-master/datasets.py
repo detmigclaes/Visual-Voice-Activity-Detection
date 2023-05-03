@@ -156,8 +156,8 @@ class AudioDataset(Dataset):
         self.normalize = True
 
         # init noise injector
-        self.noiseInjector = NoiseInjection(Noise_path='data/noises/',
-                                             transient_path='data/transients/',
+        self.noiseInjector = NoiseInjection(Noise_path='/home/cv12f23/data/noises/',
+                                             transient_path='/home/cv12f23/data/transients/',
                                              sample_length=self.timeDepth * self.Audio_frame_Length,
                                              sample_rate=self.sampling_rate,
                                              SNR=(0, 20))
