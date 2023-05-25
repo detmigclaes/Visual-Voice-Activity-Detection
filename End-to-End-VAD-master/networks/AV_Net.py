@@ -94,7 +94,8 @@ class DeepVAD_AV(nn.Module):
         if self.use_mcb:
             y = self.mcb(audio, video)
             # signed square root
-            y =  torch.mul(torch.sign(x), torch.sqrt(torch.abs(x) + 1e-12)) # or y = torch.sqrt(F.relu(x)) - torch.sqrt(F.relu(-x))
+            #y =  torch.mul(torch.sign(x), torch.sqrt(torch.abs(x) + 1e-12)) # or y = torch.sqrt(F.relu(x)) - torch.sqrt(F.relu(-x))
+            y =  torch.mul(torch.sign(y), torch.sqrt(torch.abs(y) + 1e-12))
             # L2 normalization
             y = y / torch.norm(y, p=2).detach()
 
@@ -109,6 +110,7 @@ class DeepVAD_AV(nn.Module):
         y = self.dropout(y)
         out, h = self.lstm_merged(y, h)  # output shape - seq len X Batch X lstm size
         out = self.dropout(out[-1]) # select last time step. many -> one
-        out = F.sigmoid(self.vad_merged(out))
+        #out = F.sigmoid(self.vad_merged(out))
+        out = torch.sigmoid(self.vad_merged(out))
         return out
 

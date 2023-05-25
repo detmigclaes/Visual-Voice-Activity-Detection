@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     # Hyper Parameters
     parser = argparse.ArgumentParser()
-    parser.add_argument('--num_epochs', type=int, default=20, help='number of epochs')
+    parser.add_argument('--num_epochs', type=int, default=100, help='number of epochs')
     parser.add_argument('--batch_size', type=int, default=8, help='training batch size')# previus 16
     parser.add_argument('--test_batch_size', type=int, default=8, help='test batch size')# previus 16
     parser.add_argument('--time_depth', type=int, default=15, help='number of time frames in each video\audio sample')
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     logger = Logger('logs')
 
     # create a saved models folder
-    save_dir = os.path.join('/home/cv12f23/saved_models/A run 1_test', args.arch)
+    save_dir = os.path.join('/home/cv12f23/saved_models/AV_B8_mcb_100Epoch', args.arch)
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
@@ -85,6 +85,7 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss(weight=weight).cuda()
 
     optimizer = torch.optim.SGD(net.parameters(), args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    #optimizer = torch.optim.Adam(net.parameters(), args.lr, weight_decay=args.weight_decay)
 
     scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[2, 5, 8], gamma=0.1)
 
@@ -111,10 +112,10 @@ if __name__ == '__main__':
         for param in layer.parameters():
             param.requires_grad = False
 
-    if args.arch == 'Video' and args.freeze_layers == True:
+    if args.arch == 'Video' and args.freeze_layers == True: #should be Video
         freeze_layer(net.features)
 
-    if args.arch == 'Audio' and args.freeze_layers == True:
+    if args.arch == 'Audio' and args.freeze_layers == True: # should be Audio
         freeze_layer(net.wavenet_en)
         freeze_layer(net.bn)
 
