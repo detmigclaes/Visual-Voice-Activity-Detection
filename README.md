@@ -1,5 +1,6 @@
 # Visual-Voice-Activity-Detection
 ### Project for Computer Vision F23 - Group 12
+#### Oliver Fridorf - 201907235 and Claes Eske Harbo Jensen - 201907300
 
 This README will cover code used to train and evaluate the model discussed in the report. 
 
