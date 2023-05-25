@@ -7,6 +7,7 @@ This README will cover code used to train and evaluate the model discussed in th
 
 The dataset used to train the model can be downloaded from the following link:
 https://www.dropbox.com/s/70jyy3d3hdumbpx/End-to-End-VAD_data.rar?dl=0&fbclid=IwAR2BAZZoxfW1bcEFVpwV4uoVYfeJVrP81R1CX-rHNsrdQbQgU66xT1rrKpA
+The data is comprised of 11 different speakers that can be split into training, validation, test sets. 
 
 ## Included Python files
 
